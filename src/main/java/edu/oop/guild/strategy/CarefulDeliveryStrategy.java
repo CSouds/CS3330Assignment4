@@ -4,7 +4,6 @@ import edu.oop.guild.model.DeliveryRequest;
 import edu.oop.guild.model.PackageType;
 
 public class CarefulDeliveryStrategy implements DeliveryCostStrategy {
-
     @Override
     public int estimateCoins(DeliveryRequest request) {
         if (request == null) {
