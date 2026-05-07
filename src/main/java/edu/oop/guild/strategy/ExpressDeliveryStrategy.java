@@ -10,7 +10,7 @@ public class ExpressDeliveryStrategy implements DeliveryCostStrategy {
             throw new NullPointerException();
         }
 
-        int base = request.getWeightKg() * request.getDistanceLeagues() * 3 + 11;
+        int base = 2 * request.getWeightKg() + 4 * request.getDistanceLeagues() + 25;
 
         if (request.isFragile()) {
             base += 10;

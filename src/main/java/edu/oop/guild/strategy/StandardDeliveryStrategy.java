@@ -10,7 +10,7 @@ public class StandardDeliveryStrategy implements DeliveryCostStrategy {
             throw new NullPointerException();
         }
 
-        int base = request.getWeightKg() * request.getDistanceLeagues() + 9;
+        int base = request.getWeightKg() + 2 * request.getDistanceLeagues() + 10;
 
         if (request.isFragile()) {
             base += 5;
