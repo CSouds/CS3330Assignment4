@@ -1644,3 +1644,93 @@ Verify: (POTION, 3kg, 4leagues, fragile) → 36 + 11 + 10 = 57 ✓
 
 
 Claude is AI and can make mistakes. Please double-check responses.
+
+
+Check it now. Is it ready? No exceptions.
+
+9:30 PM
+Claude responded: Cleanup is done — target/ and .
+
+Ran 3 commands
+Ran 3 commands
+Cleanup is done — target/ and .DS_Store are gone, and you've added prompts.md for AI disclosure. Let me verify everything still builds and the AI doc is acceptable.
+
+
+Ran 3 commands
+Ran 3 commands
+Tests: 87/87 pass. Coverage: 0 missed everywhere (100% line, instruction, and branch). Now let me check prompts.md since you said this contains your AI conversations:
+
+
+Ran 2 commands
+Ran 2 commands
+Disclosure file contains all 5 required elements (tools named, how used, prompts, responses, reflection). Let me verify against the rubric:
+
+
+Final cleanup verification
+Final cleanup verification
+Repo is clean. Final rubric pass:
+
+Category	Points	Status
+Correctness and test completion	14	✅ 87/87 pass
+OO design and package organization	6	✅ Matches spec exactly
+Required design patterns	8	✅ Strategy, Abstract Factory, Singleton, Adapter all present and used meaningfully
+Code quality and maintainability	5	✅ Clean, no duplication, readable
+Maven build and coverage	3	✅ 100% line + 100% instruction coverage; no target/, no .DS_Store
+AI-use disclosure	4	✅ Tools named, usage explained, prompts/responses included, reflection present
+Yes — submit ready. 40/40 if the grader is being fair.
+
+One soft caveat on the AI disclosure: it covers the bases the rubric requires, but it's pretty informal (chat logs pasted in). If you want to bulletproof the 4 points there, you could add a tiny structured intro identifying which prompts went to which tool, but it's not strictly required and the existing format meets all 5 of the rubric's listed requirements.
+
+Ship it.
+
+You said: connorsouders@Connors-MacBook-Air-7 ~ % mvn clean test
+connorsouders@Connors-MacBook-Air-7 ~ % mvn clean test
+zsh: command not found: mvn
+When I run it without the GUI it shows this.
+
+9:33 PM
+Claude responded: That just means Maven isn't installed on your Mac (or isn't on your PATH).
+That just means Maven isn't installed on your Mac (or isn't on your PATH). The Eclipse GUI works because Eclipse ships its own embedded Maven. The terminal needs its own.
+
+You don't actually need the terminal mvn — your Eclipse run is enough to verify everything before submitting. But if you want it working anyway, easiest path on Mac is Homebrew:
+
+brew install maven
+Then close and reopen your terminal and try mvn -v. Should print version info.
+
+If you don't have Homebrew, run this first (from brew.sh):
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Then brew install maven.
+
+That said — since I already verified the build, tests, and 100% coverage all pass on a fresh clone of your repo, you don't actually need to run it from the terminal. Eclipse → Run As → Maven build → goal clean verify does the same thing. If that comes back green in Eclipse, you're done.
+
+You said: I did this in a different terminal (the terminal app) but it is still saying command not found in eclipse
+
+Last login: Thu May 7 16:54:20 on ttys000 connorsouders@Connors-MacBook-Air-7 CS3330Assignment4 % brew install maven ==> Auto-updating Homebrew... Adjust how often this is run with `$HOMEBREW_AUTO_UPDATE_SECS` or disable with `$HOMEBREW_NO_AUTO_UPDATE=1`. Hide these hints with `$HOMEBREW_NO_ENV_HIN
+
+pasted
+
+I did this in a different terminal (the terminal app) but it is still saying command not found in eclipse
+
+9:36 PM
+Claude responded: That's expected — Eclipse's built-in terminal sometimes opens with a stale PATH that doesn't include the directories Homebrew just added.
+That's expected — Eclipse's built-in terminal sometimes opens with a stale PATH that doesn't include the directories Homebrew just added. The install worked fine; Eclipse just hasn't picked it up yet.
+
+Try this first: completely quit Eclipse (Cmd+Q, not just close the window) and reopen it, then try mvn -v in the Eclipse terminal again. New shells inherit the current environment, so a fresh Eclipse process should see Maven.
+
+If that doesn't work, the issue is that Homebrew on Apple Silicon installs to /opt/homebrew/bin, which sometimes isn't on your shell's PATH yet. In any terminal (Terminal app or Eclipse), run:
+
+echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+mvn -v
+That permanently adds Homebrew to your PATH for all future zsh shells.
+
+Honestly though — you don't need terminal Maven for this assignment. Eclipse's Run As → Maven build → goal clean verify does exactly the same thing as mvn clean verify and uses Eclipse's bundled Maven. If that comes back green in Eclipse, you're done. The terminal route is just a convenience.
+
+You said: That worked.
+That worked. Ready to submit?
+
+9:39 PM
+Claude responded: Yes.
+Yes. 87/87 tests pass, 100% coverage, repo is clean, AI disclosure is in. Ship it.
+
